@@ -11,5 +11,7 @@ You can change the default colors, and example red-black .dialogrc file is optio
 
 <img width="1902" height="981" alt="cheat-big-red" src="https://github.com/user-attachments/assets/6a787426-d632-4bf3-92fd-31931f1d3686" />
 
+Hint: if you decide to use a launcher on the panel to run the menu, and you use xfce, you can do the following to start the menu maximized:
+<code>xfce4-terminal --maximize --title=Cheatsheet --hide-menubar --hide-toolbar -e "/home/teo/.local/bin/menu.sh"<code/>
 
-p.s. Using mouse to select items leads to artifacts sometimes, repeat the action and it will work or use the keyboard to select. Also, the safest "anykey" is the spacebar - do not use Enter or arrows as it will be remembered for the next command!
+p.s. Using mouse to click Run button after selecting items leads to artifacts sometimes, repeat the action and it will work or use Enter to run after selecting item. Also, the safest "anykey" is the spacebar - do not use Enter or arrows as it will be remembered for the next command!
