@@ -3,8 +3,8 @@
 # License: GNU - free like free speech and free beer for everybody!
 # https://forum.manjaro.org/t/my-manjaro-cheatsheet-in-a-menu-form/145943
 # For the referenced external scripts check my other topics in the manjaro forum.
-VERSION=07.02.2026
-# Changelog from last version: restructuring the script to remove numeric tags; added cleaning of alpm download folders; rearranged the order of some commands
+VERSION=10.02.2026
+# Changelog from last version: restructuring the script to remove numeric tags; fixed cleaning of alpm download folders; rearranged the order of some commands
 
 # check if dependencies are present and ask for installation
 if ! [[ "$(which dialog)" =~ (dialog) ]] &>/dev/null; then
@@ -26,7 +26,7 @@ OPTIONS=(
 "pamac update --aur" "Pamac update AUR packages"
 "sudo pacman -Rsu \$(pacman -Qtdq)" "Remove orphaned packages"
 "yay -Scc" "Clean YAY, Pacman and Pamac cache" # pamac install yay
-"sudo rm /var/cache/pacman/pkg/download*/* && sudo rmdir /var/cache/pacman/pkg/download*" "Remove the temporary download cache folders from ALPM" # if yay -Scc errors out on download folders
+"sudo rm /var/cache/pacman/pkg/download*/*; sudo rmdir /var/cache/pacman/pkg/download*" "Remove the temporary download cache folders from ALPM" # if yay -Scc errors out on download folders
 "flatpak update" "Check for flatpak updates and update"
 "flatpak uninstall --unused" "Remove orphaned (unused) flatpak runtimes"
 "rm -rfv /var/tmp/flatpak-cache-*" "Clean flatpak cache"
@@ -76,9 +76,10 @@ CHOICE=$(dialog --clear \
 		--scrollbar \
 		--ok-label "Run" \
 		--cancel-label "Exit" \
+		--cursor-off-label \
                 --backtitle "" \
                 --title "A Manjaro cheatsheet by Teo, version $VERSION" \
-		--menu "Press Enter to run a command from the list or close the window to cancel:" \
+		--menu "Press Enter to run a command from the list; hit Esc or close the window to exit:" \
                 79 185 0 \
                 "${OPTIONS[@]}" \
                 2>&1 >/dev/tty)
