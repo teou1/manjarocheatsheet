@@ -4,13 +4,16 @@
 # https://forum.manjaro.org/t/my-manjaro-cheatsheet-in-a-menu-form/145943
 # For the referenced external scripts check my other topics in the manjaro forum.
 VERSION=10.02.2026
-# Changelog from last version: restructuring the script to remove numeric tags; fixed cleaning of alpm download folders; rearranged the order of some commands
+# Changelog from last version: restructuring the script to remove numeric tags; fixed cleaning of alpm download folders; rearranged the order of some commands; added theme variable
 
-# check if dependencies are present and ask for installation
+# Check if dependencies are present and ask for installation if not
 if ! [[ "$(which dialog)" =~ (dialog) ]] &>/dev/null; then
 	echo "dialog dependency is not found, please install: sudo pacman -S dialog"
 	exit 1
 fi
+
+# Set custom theme if there is one
+export DIALOGRC=/home/$USER/.dialogrctheme
 
 OPTIONS=(
 "pacman-mirrors" "Mirror Sync status and branch"
@@ -85,7 +88,9 @@ CHOICE=$(dialog --clear \
                 2>&1 >/dev/tty)
 [[ $CHOICE ]] || break
 echo "$CHOICE"
+echo ""
 eval "$CHOICE"
+echo ""
 read -n 1 -s -r -p "Press any key to return to menu or q to exit." REPLY;
 echo ""
 echo ""
