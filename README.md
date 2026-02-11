@@ -7,7 +7,7 @@ You can comment or make suggestions in the manjaro forum - https://forum.manjaro
 For the beginner users: save it as a file <code>menu.sh</code> in the <code>~/.local/bin</code> hidden Folder (create if needed) then right click and in the permissions tab in properties select allow to execute as a program.
 Then you can start in the terminal with menu.sh. You can even make a launcher on the panel, just don’t forget to set it to run in terminal and append <code>-launcher</code> at the end of the command. And if some subcommand does not work, check if you have the dependency in the comment on the corresponding line in the source. 
 
-You can change the default colors, and example red-black .dialogrc file is optionally included, just paste in you home.
+You can change the default colors, and example red-black .dialogrctheme file is optionally included, just paste in you home.
 
 <img width="1902" height="981" alt="cheat-big-red" src="https://github.com/user-attachments/assets/6a787426-d632-4bf3-92fd-31931f1d3686" />
 
