@@ -3,8 +3,9 @@
 # License: GNU - free like free speech and free beer for everybody!
 # https://forum.manjaro.org/t/my-manjaro-cheatsheet-in-a-menu-form/145943
 # For the referenced external scripts check my other topics in the manjaro forum.
-VERSION=10.02.2026
-# Changelog from last version: restructuring the script to remove numeric tags; fixed cleaning of alpm download folders; rearranged the order of some commands; added theme variable
+VERSION=12.02.2026
+# Changelog from last version: restructuring the script to remove numeric tags; fixed cleaning of alpm download folders; 
+# rearranged the order of some commands; added theme variable, renamed the buttons
 
 # Check if dependencies are present and ask for installation if not
 if ! [[ "$(which dialog)" =~ (dialog) ]] &>/dev/null; then
@@ -77,8 +78,8 @@ CHOICE=$(dialog --clear \
 		--no-shadow \
 		--keep-tite \
 		--scrollbar \
-		--ok-label "Run" \
-		--cancel-label "Exit" \
+		--ok-label "Press Enter to run command" \
+		--cancel-label "Press ESC to exit" \
 		--cursor-off-label \
                 --backtitle "" \
                 --title "A Manjaro cheatsheet by Teo, version $VERSION" \
