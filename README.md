@@ -5,7 +5,7 @@ Since beginner linux users are advised to keep a list of commands on file, and i
 You can comment or make suggestions in the manjaro forum - https://forum.manjaro.org/t/my-manjaro-cheatsheet-in-a-menu-form/145943
 
 For the beginner users: save it as a file <code>menu.sh</code> in the <code>~/.local/bin</code> hidden Folder (create if needed) then right click and in the permissions tab in properties select allow to execute as a program.
-Then you can start in the terminal with menu.sh. You can even make a launcher on the panel, just don’t forget to set it to run in terminal and append <code>-launcher</code> at the end of the command. And if some subcommand does not work, check if you have the dependency in the comment on the corresponding line in the source. 
+Then you can start in the terminal with menu.sh. You can even make a launcher on the panel. And if some subcommand does not work, check if you have the dependency in the comment on the corresponding line in the source. 
 
 You can change the default colors, and example red-black or lightgreen-black .dialogrctheme file is optionally included, just paste in you home and rename to <code>.dialogrctheme</code>.
 
