@@ -1,11 +1,11 @@
 #!/bin/bash
 # Creator: Todor Uzunov a.k.a. Teo
 # License: GNU - free like free speech and free beer for everybody!
+# https://github.com/teou1/manjarocheatsheet
 # https://forum.manjaro.org/t/my-manjaro-cheatsheet-in-a-menu-form/145943
 # For the referenced external scripts check my other topics in the manjaro forum.
-VERSION=12.02.2026
-# Changelog from last version: restructuring the script to remove numeric tags; fixed cleaning of alpm download folders; 
-# rearranged the order of some commands; added theme variable, renamed the buttons
+VERSION=25.05.2026
+# Changelog: see github
 
 # Check if dependencies are present and ask for installation if not
 if ! [[ "$(which dialog)" =~ (dialog) ]] &>/dev/null; then
@@ -13,7 +13,7 @@ if ! [[ "$(which dialog)" =~ (dialog) ]] &>/dev/null; then
 	exit 1
 fi
 
-# Set custom theme if there is one
+# Set custom theme if there is one - 2 examples, red and green in github. If the file is not found default is grey
 export DIALOGRC=/home/$USER/.dialogrctheme
 
 OPTIONS=(
@@ -24,7 +24,7 @@ OPTIONS=(
 "pamac update --aur --force-refresh" "Force refresh and fix AUR database in pamac"
 "DIFFPROG=meld pacdiff -s" "Run pacdiff with Meld to compare changed configs" # pamac install meld
 "pacman -Qm" "List foreign (AUR) packages"
-"pacman -Qdt" "List orphaned packages"
+"pacman -Qdt" "List orphaned packages"		
 "yay -Qua" "Check for updates of AUR with YAY, do not update" # pamac install yay
 "yay -Sua" "Update only AUR packages with YAY" # pamac install yay
 "pamac update --aur" "Pamac update AUR packages"
@@ -47,12 +47,11 @@ OPTIONS=(
 "inxi -zv8" "Gather system info with inxi (filtered)"
 "wavemon" "Run wavemonitor to check Wifi channel and strength" # pamac install wavemon
 "nmcli dev wifi" "List wifi networks around with strength and channel"
-"bash <(curl -s https://gitlab.com/cscs/mapare/-/raw/main/mapare) -IP" "Use MAPARE to check if missing default packages"
+"\$HOME/.local/bin/mapare -IP" "Use MAPARE to check if missing default packages in Manjaro" # https://gitlab.com/cscs/mapare/-/raw/main/mapare
 "sudo pacman -Qk 2>/dev/null | grep -v ' 0 missing files' " "Check for missing files from packages"
 "read fileowner; pacman -Qo \$fileowner" "Which package owns an existing file (paste filepath)"
 "read whogotit; sudo pacman -Fyx \$whogotit" "Which (installed or not) package contains a file (paste filename, online check)"
 "read whogotit; pacman -Qo \$whogotit" "Which (installed) package contains a file or directory (paste filename or path, offline check)"
-"\$HOME/Applications/appimageupdater5.sh" "Check Appimage and Github Apps for updates" # requires the extra script, see https://forum.manjaro.org/t/automate-update-checks-for-externally-downloaded-software-in-tar-gz-or-appimage/161008
 "rm -f ~/.bash_history-*.tmp" "Clean tmp bash history files"
 "rm -f ~/.cache/totem/stream-buffer/*" "Clean Totem stream cache"
 "du -sh -t +100M ~/.cache/* ~/.config/* ~/.local/share/*" "Show hidden spaceeaters above 100M in HOME"
@@ -67,9 +66,11 @@ OPTIONS=(
 "watch -e -n 1 sensors" "Read sensors every second, press CTRL-C to exit"
 "stress -c 16" "Stress the CPU, useful for thermal or throttling tests, CTRL-C to exit"
 "vnstat -d --style 0 --limit 5 | grep -v estimated && vnstat -m --style 0 --limit 3 | grep -v estimated" "Traffic statistic for the last days and current month (vnstat)" # install vnstat and start daemon
-"sudo sysz" "Fuzzy search in systemd services. Exit with esc" # pamac build sysz
 "systemctl start --user spotlight.service" "Spotlight background refresh" # requires the extra script, see https://forum.manjaro.org/t/spotlight-wallpaper-changer-for-xfce/181665
 "xfce4-terminal --hold -e \"journalctl -t spotlight --no-pager\"" "Spotlight background info" # requires the extra script, see above or https://github.com/teou1/spotlight-xfce/
+"journalctl -b -t modulejail --no-pager" "List kernel modules blocked by modulejail since boot" # for realtime notification and more info https://forum.manjaro.org/t/howto-modulejail/187877
+"sudo micro /etc/modulejail/whitelist.conf" "Edit modulejail whitelist.conf" # install micro or edit to use nano, vi, vim, whatever you like
+"sudo modulejail -p desktop" "Apply modulejail profile desktop"
 "sudo conservation_mode.sh 0" "Temporary disable Ideapad battery conservation mode" # pamac build conservation_mode
 )
 
