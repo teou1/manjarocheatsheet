@@ -4,7 +4,7 @@
 # https://github.com/teou1/manjarocheatsheet
 # https://forum.manjaro.org/t/my-manjaro-cheatsheet-in-a-menu-form/145943
 # For the referenced external scripts check my other topics in the manjaro forum.
-VERSION=25.05.2026
+VERSION=31.05.2026
 # Changelog: see github
 
 # Check if dependencies are present and ask for installation if not
@@ -21,13 +21,11 @@ OPTIONS=(
 "sudo pacman-mirrors -f" "Refresh the mirror list" # sudo pacman-mirrors --country Germany --api --protocol https
 "sudo pacman -Syu" "Update all without AUR"
 "sudo pacman -Syuw" "Download all updates for offline install later"
-"pamac update --aur --force-refresh" "Force refresh and fix AUR database in pamac"
 "DIFFPROG=meld pacdiff -s" "Run pacdiff with Meld to compare changed configs" # pamac install meld
 "pacman -Qm" "List foreign (AUR) packages"
-"pacman -Qdt" "List orphaned packages"		
+"pacman -Qdt" "List orphaned packages"
 "yay -Qua" "Check for updates of AUR with YAY, do not update" # pamac install yay
 "yay -Sua" "Update only AUR packages with YAY" # pamac install yay
-"pamac update --aur" "Pamac update AUR packages"
 "sudo pacman -Rsu \$(pacman -Qtdq)" "Remove orphaned packages"
 "yay -Scc" "Clean YAY, Pacman and Pamac cache" # pamac install yay
 "sudo rm /var/cache/pacman/pkg/download*/*; sudo rmdir /var/cache/pacman/pkg/download*" "Remove the temporary download cache folders from ALPM" # if yay -Scc errors out on download folders
@@ -38,13 +36,19 @@ OPTIONS=(
 "journalctl -b -1 -p3 --no-pager" "Show journal errors from previous boot"
 "journalctl -b -t systemd" "Show systemd bootlog only"
 "journalctl -k" "Show kernel log"
-"coredumpctl" "Check for coredumps"
-"sudo rm -f /var/lib/systemd/coredump/*" "Clear coredumps on disk" #normally runs biweekly automatically
 "sudo /root/verifier.sh -update" "Regenerate hashes for the boot files after update" # requires the extra script, see https://forum.manjaro.org/t/utility-script-my-take-on-a-verified-boot/164729
 "sudo updatedb" "Update database for locate" #normally run weekly automatically
 "sudo fstrim -v /" "Trim the root of the SSD" #normally run weekly automatically
+"journalctl -b -t modulejail --no-pager" "List kernel modules blocked by modulejail since boot" # for realtime notification and more info https://forum.manjaro.org/t/howto-modulejail/187877
+"journalctl -b -1 -t modulejail --no-pager" "List kernel modules blocked by modulejail during the previous boot" # for realtime notification and more info https://forum.manjaro.org/t/howto-modulejail/187877
+"sudo micro /etc/modulejail/whitelist.conf" "Edit modulejail whitelist.conf" # install micro or edit to use nano, vi, vim, whatever you like
+"sudo modulejail -p desktop --verbose-logging" "Apply modulejail profile desktop"
+"coredumpctl" "Check for coredumps"
+"sudo rm -f /var/lib/systemd/coredump/*" "Clear coredumps on disk" #normally runs biweekly automatically
 "sudo smartctl --all /dev/nvme0" "S.M.A.R.T. status of the disk and write cycles" # smartctl --scan
 "inxi -zv8" "Gather system info with inxi (filtered)"
+"pamac update --aur --force-refresh" "Force refresh and fix AUR database in pamac"
+"pamac update --aur" "Pamac update AUR packages"
 "wavemon" "Run wavemonitor to check Wifi channel and strength" # pamac install wavemon
 "nmcli dev wifi" "List wifi networks around with strength and channel"
 "\$HOME/.local/bin/mapare -IP" "Use MAPARE to check if missing default packages in Manjaro" # https://gitlab.com/cscs/mapare/-/raw/main/mapare
@@ -68,9 +72,6 @@ OPTIONS=(
 "vnstat -d --style 0 --limit 5 | grep -v estimated && vnstat -m --style 0 --limit 3 | grep -v estimated" "Traffic statistic for the last days and current month (vnstat)" # install vnstat and start daemon
 "systemctl start --user spotlight.service" "Spotlight background refresh" # requires the extra script, see https://forum.manjaro.org/t/spotlight-wallpaper-changer-for-xfce/181665
 "xfce4-terminal --hold -e \"journalctl -t spotlight --no-pager\"" "Spotlight background info" # requires the extra script, see above or https://github.com/teou1/spotlight-xfce/
-"journalctl -b -t modulejail --no-pager" "List kernel modules blocked by modulejail since boot" # for realtime notification and more info https://forum.manjaro.org/t/howto-modulejail/187877
-"sudo micro /etc/modulejail/whitelist.conf" "Edit modulejail whitelist.conf" # install micro or edit to use nano, vi, vim, whatever you like
-"sudo modulejail -p desktop" "Apply modulejail profile desktop"
 "sudo conservation_mode.sh 0" "Temporary disable Ideapad battery conservation mode" # pamac build conservation_mode
 )
 
