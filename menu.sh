@@ -4,7 +4,7 @@
 # https://github.com/teou1/manjarocheatsheet
 # https://forum.manjaro.org/t/my-manjaro-cheatsheet-in-a-menu-form/145943
 # For the referenced external scripts check my other topics in the manjaro forum.
-VERSION=31.05.2026
+VERSION=04.06.2026
 # Changelog: see github
 
 # Check if dependencies are present and ask for installation if not
@@ -20,7 +20,7 @@ OPTIONS=(
 "pacman-mirrors" "Mirror Sync status and branch"
 "sudo pacman-mirrors -f" "Refresh the mirror list" # sudo pacman-mirrors --country Germany --api --protocol https
 "sudo pacman -Syu" "Update all without AUR"
-"sudo pacman -Syuw" "Download all updates for offline install later"
+"checkupdates" "Check for repo updates without downloading or installing" # pamac install pacman-contrib
 "DIFFPROG=meld pacdiff -s" "Run pacdiff with Meld to compare changed configs" # pamac install meld
 "pacman -Qm" "List foreign (AUR) packages"
 "pacman -Qdt" "List orphaned packages"
@@ -47,6 +47,7 @@ OPTIONS=(
 "sudo rm -f /var/lib/systemd/coredump/*" "Clear coredumps on disk" #normally runs biweekly automatically
 "sudo smartctl --all /dev/nvme0" "S.M.A.R.T. status of the disk and write cycles" # smartctl --scan
 "inxi -zv8" "Gather system info with inxi (filtered)"
+"sudo checkupdates -d" "Download all updates to cache for fast install later" # pamac install pacman-contrib
 "pamac update --aur --force-refresh" "Force refresh and fix AUR database in pamac"
 "pamac update --aur" "Pamac update AUR packages"
 "wavemon" "Run wavemonitor to check Wifi channel and strength" # pamac install wavemon
