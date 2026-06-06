@@ -4,7 +4,7 @@
 # https://github.com/teou1/manjarocheatsheet
 # https://forum.manjaro.org/t/my-manjaro-cheatsheet-in-a-menu-form/145943
 # For the referenced external scripts check my other topics in the manjaro forum.
-VERSION=04.06.2026
+VERSION=06.06.2026
 # Changelog: see github
 
 # Check if dependencies are present and ask for installation if not
@@ -34,13 +34,13 @@ OPTIONS=(
 "rm -rfv /var/tmp/flatpak-cache-*" "Clean flatpak cache"
 "journalctl -b -p3 --no-pager" "Show journal errors from current boot"
 "journalctl -b -1 -p3 --no-pager" "Show journal errors from previous boot"
-"journalctl -b -t systemd" "Show systemd bootlog only"
-"journalctl -k" "Show kernel log"
+"journalctl -b -t systemd" "Show systemd bootlog only (q to exit)"
+"journalctl -k" "Show kernel log (q to exit)"
 "sudo /root/verifier.sh -update" "Regenerate hashes for the boot files after update" # requires the extra script, see https://forum.manjaro.org/t/utility-script-my-take-on-a-verified-boot/164729
-"sudo updatedb" "Update database for locate" #normally run weekly automatically
-"sudo fstrim -v /" "Trim the root of the SSD" #normally run weekly automatically
-"journalctl -b -t modulejail --no-pager" "List kernel modules blocked by modulejail since boot" # for realtime notification and more info https://forum.manjaro.org/t/howto-modulejail/187877
-"journalctl -b -1 -t modulejail --no-pager" "List kernel modules blocked by modulejail during the previous boot" # for realtime notification and more info https://forum.manjaro.org/t/howto-modulejail/187877
+"sudo updatedb" "Update database for locate" #normally runs weekly automatically
+"sudo fstrim -v /" "Trim the root of the SSD" #normally runs weekly automatically
+"journalctl --since yesterday -t modulejail --no-pager" "Listing blocked modules from last 24 hours (full log)" # for realtime notification and more info https://forum.manjaro.org/t/howto-modulejail/187877
+"journalctl --since yesterday -t modulejail --no-pager | awk -F'blocked: ' '/blocked: / {split(\$2, a, \" \"); if (!seen[a[1]]++) print a[1]}'" "Filtered list of blocked modules from last 24 hours, ready to copy                                                                                       " # some 75+12 padding spaces added to keep column sizes adequate
 "sudo micro /etc/modulejail/whitelist.conf" "Edit modulejail whitelist.conf" # install micro or edit to use nano, vi, vim, whatever you like
 "sudo modulejail -p desktop --verbose-logging" "Apply modulejail profile desktop"
 "coredumpctl" "Check for coredumps"
