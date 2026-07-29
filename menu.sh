@@ -4,7 +4,7 @@
 # https://github.com/teou1/manjarocheatsheet
 # https://forum.manjaro.org/t/my-manjaro-cheatsheet-in-a-menu-form/145943
 # For the referenced external scripts check my other topics in the manjaro forum.
-VERSION=09.06.2026
+VERSION=29.07.2026
 # Changelog: see github
 
 # Check if dependencies are present and ask for installation if not
@@ -77,6 +77,11 @@ OPTIONS=(
 "sudo conservation_mode.sh 0" "Temporary disable Ideapad battery conservation mode" # pamac build conservation_mode
 )
 
+# check for updates if you have jq and curl installed
+UPDATE=" "
+VERSIONONLINE=$(curl -s --max-time 1 "https://api.github.com/repos/teou1/manjarocheatsheet/releases/latest" | jq -r '.name')
+[[ ! $VERSIONONLINE ]] || if [ $VERSION != "$VERSIONONLINE" ]; then UPDATE="Latst version on https://github.com/teou1/manjarocheatsheet is $VERSIONONLINE"; fi
+
 while true; do
 CHOICE=$(dialog --clear \
 		--no-shadow \
@@ -86,7 +91,7 @@ CHOICE=$(dialog --clear \
 		--cancel-label "Press ESC to exit" \
 		--cursor-off-label \
                 --backtitle "" \
-                --title "A Manjaro cheatsheet by Teo, version $VERSION" \
+                --title "A Manjaro cheatsheet by Teo, ver. $VERSION. $UPDATE" \
 		--menu "Press Enter to run a command from the list; hit Esc or close the window to exit:" \
                 79 185 0 \
                 "${OPTIONS[@]}" \
