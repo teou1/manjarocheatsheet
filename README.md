@@ -13,6 +13,7 @@ You can change the default colors, and example red-black or lightgreen-black .di
 
 <img width="1907" height="1015" alt="cheat-green" src="https://github.com/user-attachments/assets/3b931c18-db3b-4a27-a4ea-177f686a3346" />
 
+If you have *curl* and *jq* installed, the cheatsheet will also check for updates and inform you in the title of the window.
 
 Hint: if you decide to use a launcher on the panel to run the menu, and you use xfce, you can do the following to start the menu maximized:
 <code>xfce4-terminal --maximize --title=Cheatsheet --hide-menubar --hide-toolbar -e "/home/teo/.local/bin/menu.sh"<code/>
